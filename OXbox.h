@@ -3,6 +3,7 @@
 
 #include "widgets.hpp"
 #include "graphics.hpp"
+#include "Application.h"
 
 class OXbox : public Widget
 {

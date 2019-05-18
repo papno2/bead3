@@ -19,6 +19,7 @@ OXbox::OXbox(Application* parent, int x, int y, int sx, int sy) :
     Widget(parent, x, y, sx, sy, true)
 {
     _checked=false;
+    _xo=true;
 }
 
 void OXbox::draw()
@@ -51,6 +52,7 @@ void OXbox::handle(genv::event ev)
 {
     if (ev.type == ev_mouse && is_selected(ev.pos_x, ev.pos_y) && ev.button==btn_left)
         {
+            _xo=_parent->action(ev.pos_x, ev.pos_y);
             _checked = true;
             _focusable=false;
         }

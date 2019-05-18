@@ -2,22 +2,28 @@
 #define APPLICATION_H
 
 #include "widgets.hpp"
+#include "OXbox.h"
+#include "GameMaster.h"
 #include <vector>
 #include <string>
 #include <fstream>
 using namespace std;
 using namespace genv;
 
+
 class Application
 {
     public:
-        Application(int x, int y);
+        Application(int, int);
         void event_loop();
-        void registerWidget(Widget *w);
-        virtual void action(std::string id);
+        void registerWidget(Widget*);
+        virtual bool action(int, int);
 
     protected:
-        std::vector<Widget*> widgets;
+        std::vector<Widget*> _widgets;
+        GameMaster _gm;
+        int _wn, _ws;
+        int focus;
     private:
 };
 

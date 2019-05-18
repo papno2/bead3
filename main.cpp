@@ -40,7 +40,7 @@ void event_loop(vector<Widget*>& widgets) {
 
 int main()
 {
-    Application app(400, 400);
+    Application app(10, 30);
     app.event_loop();
 
     return 0;
