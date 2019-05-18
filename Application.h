@@ -18,10 +18,12 @@ class Application
         void event_loop();
         void registerWidget(Widget*);
         virtual bool action(int, int);
+        void endofGame();
 
     protected:
         std::vector<Widget*> _widgets;
         GameMaster _gm;
+        bool _TheGameIsOn;
         int _wn, _ws;
         int focus;
     private:

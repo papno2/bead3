@@ -1,6 +1,6 @@
 #ifndef GAMEMASTER_H
 #define GAMEMASTER_H
-
+#include<cmath>
 
 const int M=10;
 
@@ -8,7 +8,7 @@ class GameMaster
 {
     public:
         GameMaster();
-        virtual ~GameMaster();
+
         bool isFree(short, short);
         int steps(short, short);
         bool check(short); //nyert-e valaki

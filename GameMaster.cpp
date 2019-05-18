@@ -45,38 +45,81 @@ bool GameMaster::check(short who)
     short diagonalcount1=0;
     short diagonalcount2=0;
 
-    bool horizontal, vertical;
-
     for (short i=0; i<M; i++)
     {
-        horizontal=true;
-        vertical=true;
         for (short j=0; j<M; j++)
         {
-            if (horizontal && board[i][j]==who)
+            if (board[j][i]==who)
             {
                 horizontalcount++;
-                horizontal=true;
                 //std::cout<< horizontalcount<<' ';
                 if (horizontalcount>=5)
                     return true;
             } else{
                 horizontalcount=0;
-                horizontal=false;
             }
 
-             if (vertical && board[j][i]==who)
+            if (board[i][j]==who)
             {
                 verticalcount++;
-                vertical=true;
-                std::cout<< verticalcount<<' ';
+                //std::cout<< verticalcount<<' ';
                 if (verticalcount>=5)
                     return true;
             } else{
                 verticalcount=0;
-                vertical=false;
             }
         }
+    }
+    for (short t=0; t<=M-5; t++) //bal felso-jobb also
+    {
+        for (short h=0; h<abs(M-t); h++)
+        {
+            if (board[h][h+t]==who)
+            {
+                diagonalcount1++;
+                //std::cout<< diagonalcount1<<' ';
+                if (diagonalcount1>=5)
+                    return true;
+            } else{
+                diagonalcount1=0;
+            }
+
+            if (board[h+t][h]==who)
+            {
+                diagonalcount2++;
+                //std::cout<< diagonalcount2<<' ';
+                if (diagonalcount2>=5)
+                    return true;
+            } else{
+                diagonalcount2=0;
+            }
+        }
+
+    }
+    for (short t=4; t<M; t++)
+    {
+        for (short h=0; h<t; h++)
+        {
+            if (board[h][t-h]==who)
+            {
+                diagonalcount1++;
+                std::cout<< diagonalcount1<<' ';
+                if (diagonalcount1>=5)
+                    return true;
+            } else{
+                diagonalcount1=0;
+            }
+            if (board[M-1-h][M-1-t+h]==who)
+            {
+                diagonalcount1++;
+                std::cout<< diagonalcount1<<' ';
+                if (diagonalcount1>=5)
+                    return true;
+            } else{
+                diagonalcount1=0;
+            }
+        }
+
     }
 
      return false;
@@ -99,7 +142,3 @@ void GameMaster::drawOnConsol()
     }
 }
 
-GameMaster::~GameMaster()
-{
-    //dtor
-}
