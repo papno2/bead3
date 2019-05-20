@@ -1,7 +1,6 @@
 #ifndef WIDGETS_HPP_INCLUDED
 #define WIDGETS_HPP_INCLUDED
 
-//#include "Application.h" ezt muszaj igy hagyni
 #include "graphics.hpp"
 class Application;
 
