@@ -122,7 +122,7 @@ bool Application::StepCheck(int x, int y)
 void Application::EndofGame(int winner)
 {
     _TheGameIsOn=false;
-    for (int i=0; i<_widgets.size(); i++)
+    for (unsigned i=0; i<_widgets.size(); i++)
     {
         _widgets[i]->draw();
         delete _widgets[i];
