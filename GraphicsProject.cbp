@@ -42,13 +42,10 @@
 		</Linker>
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.h" />
-		<Unit filename="BoxO.cpp" />
-		<Unit filename="BoxO.h" />
-		<Unit filename="BoxX.cpp" />
-		<Unit filename="BoxX.h" />
 		<Unit filename="GameMaster.cpp" />
 		<Unit filename="GameMaster.h" />
-		<Unit filename="OKbutton.cpp" />
+		<Unit filename="OXbox.cpp" />
+		<Unit filename="OXbox.h" />
 		<Unit filename="examplecheckbox.cpp" />
 		<Unit filename="examplecheckbox.hpp" />
 		<Unit filename="main.cpp" />

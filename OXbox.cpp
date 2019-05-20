@@ -28,7 +28,7 @@ void OXbox::draw()
         gout << move_to(_x, _y) << color(0,0,255) << box(_size_x, _size_y);
     else
         gout << move_to(_x, _y) << color(255,255,255) << box(_size_x, _size_y);
-    gout << move_to(_x+2, _y+2) << color(0,0,0) << box(_size_x-4, _size_y-4);
+    gout << move_to(_x+1, _y+1) << color(50,50,50) << box(_size_x-2, _size_y-2);
     if (_checked)
     {
         gout << color(255,255,255);
@@ -41,7 +41,7 @@ void OXbox::draw()
         } else
         {
             kort_rajzol(_size_x/2-4, _x+_size_x/2, _y+_size_y/2);
-            gout << color(0,0,0);
+            gout << color(50,50,50);
             kort_rajzol(_size_x/2-6, _x+_size_x/2, _y+_size_y/2);
         }
 
@@ -52,11 +52,10 @@ void OXbox::handle(genv::event ev)
 {
     if (ev.type == ev_mouse && is_selected(ev.pos_x, ev.pos_y) && ev.button==btn_left)
         {
-            _xo=_parent->check(ev.pos_x, ev.pos_y);
+            _xo=_parent->StepCheck(ev.pos_x, ev.pos_y);
             _checked = true;
             _focusable=false;
         }
 }
-
 
 

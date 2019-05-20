@@ -9,7 +9,7 @@
 #include "GameMaster.h"
 #include <vector>
 #include <string>
-#include <fstream>
+
 using namespace std;
 using namespace genv;
 
@@ -18,19 +18,18 @@ class Application
 {
     public:
         Application(int, int);
-        void initGame();
+        void InitGame();
         void event_loop();
         void registerWidget(Widget*);
-        virtual bool check(int, int);
-        void endofGame(int);
+        virtual bool StepCheck(int, int);
+        void EndofGame(int);
 
     protected:
         std::vector<Widget*> _widgets;
-        GameMaster _gm;
+        GameMaster* _gm;
         bool _TheGameIsOn;
         int _wn, _ws;
         int focus;
-        //int _winner;
     private:
 };
 
