@@ -2,17 +2,17 @@
 #define GAMEMASTER_H
 #include<cmath>
 
-const int M=10;
+const int M=18;
 
 class GameMaster
 {
     public:
         GameMaster();
 
-        bool isFree(short, short);
-        bool steps(short, short);
+        bool isFree(short, short); //szabad-e az adott mezo
+        bool steps(short, short); //lepes ellenorzese (lehet-e, ha igen, beirja a belso reprezentacioba)
         bool check(short); //nyert-e valaki
-        void drawOnConsol();
+       // void drawOnConsol();
 
     protected:
         short board[M][M]; //palya reprezentacioja; -1: ures, 1:1.jatekos, 0:2. jatekos

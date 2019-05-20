@@ -27,16 +27,6 @@ bool GameMaster::steps(short x, short y)
     return step%2; //ha sikerult lepni, a masik jatekos jon, ha nem, tovabbra is a jelenlegi
 }
 
-/*int GameMaster::steps(short x, short y)
-{
-    if (isFree(x, y))
-    {
-        step++;
-        board[x][y]=step%2;
-        return step%2; // ha sikerult lepni, akkor visszater annak a szamaval, aki lepett
-    }
-    return -1; //ha nem sikerult lepni -> -1
-}*/
 
 bool GameMaster::check(short who)
 {
@@ -47,12 +37,13 @@ bool GameMaster::check(short who)
 
     for (short i=0; i<M; i++)
     {
+        horizontalcount=0;
+        verticalcount=0;
         for (short j=0; j<M; j++)
         {
             if (board[j][i]==who)
             {
                 horizontalcount++;
-                //std::cout<< horizontalcount<<' ';
                 if (horizontalcount>=5)
                     return true;
             } else{
@@ -62,7 +53,6 @@ bool GameMaster::check(short who)
             if (board[i][j]==who)
             {
                 verticalcount++;
-                //std::cout<< verticalcount<<' ';
                 if (verticalcount>=5)
                     return true;
             } else{
@@ -72,12 +62,13 @@ bool GameMaster::check(short who)
     }
     for (short t=0; t<=M-5; t++) //bal felso-jobb also
     {
+        diagonalcount1=0;
+        diagonalcount2=0;
         for (short h=0; h<abs(M-t); h++)
         {
             if (board[h][h+t]==who)
             {
                 diagonalcount1++;
-                //std::cout<< diagonalcount1<<' ';
                 if (diagonalcount1>=5)
                     return true;
             } else{
@@ -87,7 +78,6 @@ bool GameMaster::check(short who)
             if (board[h+t][h]==who)
             {
                 diagonalcount2++;
-                //std::cout<< diagonalcount2<<' ';
                 if (diagonalcount2>=5)
                     return true;
             } else{
@@ -98,12 +88,13 @@ bool GameMaster::check(short who)
     }
     for (short t=4; t<M; t++) //jobb felso-bal also
     {
+        diagonalcount1=0;
+        diagonalcount2=0;
         for (short h=0; h<=t; h++)
         {
             if (board[h][t-h]==who)
             {
                 diagonalcount1++;
-                //std::cout<< diagonalcount1<<' ';
                 if (diagonalcount1>=5)
                     return true;
             } else{
@@ -112,7 +103,6 @@ bool GameMaster::check(short who)
             if (board[M-1-h][M-1-t+h]==who)
             {
                 diagonalcount2++;
-                //std::cout<< diagonalcount2<<' ';
                 if (diagonalcount2>=5)
                     return true;
             } else{
@@ -124,7 +114,7 @@ bool GameMaster::check(short who)
      return false;
 }
 
-void GameMaster::drawOnConsol()
+/*void GameMaster::drawOnConsol()
 {
     for (short i=0; i<M; i++)
     {
@@ -139,5 +129,5 @@ void GameMaster::drawOnConsol()
                 std::cout<<' ';
         }
     }
-}
+}*/
 
