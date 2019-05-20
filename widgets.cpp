@@ -33,3 +33,8 @@ void Widget::unfocusable()
 {
     _focusable=false;
 }
+
+Widget::~Widget()
+{
+    _parent=nullptr;
+}

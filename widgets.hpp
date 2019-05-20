@@ -1,7 +1,6 @@
 #ifndef WIDGETS_HPP_INCLUDED
 #define WIDGETS_HPP_INCLUDED
 
-#include "Application.h"
 #include "graphics.hpp"
 class Application;
 
@@ -13,6 +12,7 @@ protected:
     Application* _parent;
 public:
     Widget(Application* parent, int x, int y, int sx, int sy, bool f);
+    virtual ~Widget();
     virtual bool is_selected(int mouse_x, int mouse_y);
     virtual void focus();
     virtual void unfocus();
