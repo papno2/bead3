@@ -29,4 +29,7 @@ bool Widget::isfocusable()
     return _focusable;
 }
 
-
+void Widget::unfocusable()
+{
+    _focusable=false;
+}

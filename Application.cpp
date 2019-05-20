@@ -22,13 +22,14 @@ void Application::initGame()
         }
     }
     _TheGameIsOn=true;
+   // _winner=-1;
 
 }
 
 void Application::event_loop()
 {
     event ev;
-
+    int unfocusables;
     int focus = -1;
     while(gin >> ev)
     {
@@ -47,50 +48,68 @@ void Application::event_loop()
             _gm.drawOnConsol();
         if (ev.keycode==key_tab)
         {
-            if (focus!=-1)
+            if (focus>-1)
                 _widgets[focus]->unfocus();
-            focus=(++focus)%_widgets.size();
+            focus++;
+            focus=(focus%_widgets.size());
         }
-        if (focus!=-1)
+        if (focus>-1)
         {
-            if (_widgets[focus]->isfocusable())
-                _widgets[focus]->focus();
-            else
-                focus=(++focus)%_widgets.size();
+            unfocusables=0;
+            while(!_widgets[focus]->isfocusable() && unfocusables<_wn*_wn)
+            {
+                focus++;
+                focus=(focus%_widgets.size());
+                unfocusables++;
+            }
+            if (unfocusables==_wn*_wn)
+            {
+                endofGame(-1);
+            }
+            _widgets[focus]->focus();
             _widgets[focus]->handle(ev);
+
+            if(ev.button==btn_left)
+            {
+                if (_gm.check(Player1))
+                {
+                    //_winner=Jatekos1;
+                    endofGame(Player1);
+                }
+                if (_gm.check(Player2))
+                {
+                    //_winner=Jatekos2;
+                    endofGame(Player2);
+                }
+            }
         }
 
-        if (_TheGameIsOn)
-        {
+
+
             for (Widget * w : _widgets)
             {
                 w->draw();
             }
             gout << refresh;
 
-        }
-        else
-        {
-            endofGame();
-            gout << refresh;
-        }
+
     }
 }
 ///kulon nezni h ki jon, mit lepett->X/O es utana kulon ellenorizni, h nyert-e
 bool Application::check(int x, int y)
 {
     bool whoSteps=(_gm.steps(x/_ws, y/_ws));
-    if (_gm.check(whoSteps))
+    /*if (_gm.check(whoSteps))
     {
         _TheGameIsOn=false;
-    }
+    }*/
 
     return whoSteps;
 }
 
 
 
-void Application::endofGame()
+void Application::endofGame(int winner)
 {
     //genv::gout<<refresh;
     for (int i=0; i<_wn*_wn; i++)
@@ -98,6 +117,15 @@ void Application::endofGame()
         _widgets[i]->unfocusable();
 
     }
-    genv::gout<<move_to(_wn*_ws/2-100, _wn*_ws/2-50) << color (0,0,0)<<box(200,100);
-    genv::gout<<move_to(_wn*_ws/2-10, _wn*_ws/2) <<color(255, 50, 50)<<text("Vege");
+    genv::gout<<move_to(_wn*_ws/2-100, _wn*_ws/2-80) << color (0,0,0)<<box(200,160);
+    string w;
+    if (winner==Player1)
+        w="Player1";
+    else if (winner==Player2)
+        w="Player2";
+        else
+            w="No one";
+    genv::gout<<move_to(_wn*_ws/2-20, _wn*_ws/2-50) <<color(255, 50, 50)<<text(w)<<text(" won!");
+    genv::gout<<move_to(_wn*_ws/2-30, _wn*_ws/2) <<color(200, 200, 200) <<box(60,40);
+    genv::gout<<move_to(_wn*_ws/2-10, _wn*_ws/2+30) <<color(0,0,0)<<text("New game");
 }

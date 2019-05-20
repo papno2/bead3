@@ -1,7 +1,7 @@
 #ifndef WIDGETS_HPP_INCLUDED
 #define WIDGETS_HPP_INCLUDED
 
-//#include "Application.h"
+#include "Application.h"
 #include "graphics.hpp"
 class Application;
 
@@ -17,9 +17,9 @@ public:
     virtual void focus();
     virtual void unfocus();
     virtual bool isfocusable();
+    virtual void unfocusable();
     virtual void draw() = 0;
     virtual void handle(genv::event ev) = 0;
 };
-
 
 #endif // WIDGETS_HPP_INCLUDED
