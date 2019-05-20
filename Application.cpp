@@ -1,5 +1,4 @@
 #include "Application.h"
-//#include<iostream>
 
 Application::Application(int n, int s): _wn(n), _ws(s)
 {
@@ -50,8 +49,6 @@ void Application::event_loop()
                     }
                 }
             }
-            /*if (ev.keycode==key_enter)
-                _gm->drawOnConsol();*/
             if (ev.keycode==key_tab)
             {
                 if (focus>-1)
@@ -91,15 +88,6 @@ void Application::event_loop()
         } else
         {
             focus=-1;
-            /*if (ev.type == ev_mouse && ev.button==btn_left)
-            {
-                if (_wn*_ws/2-40<ev.pos_x && ev.pos_x<_wn*_ws/2+40 && _wn*_ws/2-20<ev.pos_y && ev.pos_y<_wn*_ws/2+10)
-                {
-                    InitGame();
-                }
-                if (_wn*_ws/2-40<ev.pos_x && ev.pos_x<_wn*_ws/2+40 && _wn*_ws/2+20<ev.pos_y && ev.pos_y<_wn*_ws/2+50)
-                    return;
-            }*/
             if (ev.type == ev_mouse)
             {
                 for (size_t i=0; i<_widgets.size(); i++)
@@ -175,9 +163,5 @@ void Application::EndofGame(int winner)
     Widget* BExit= new OKbutton(this,_wn*_ws/2-40, _wn*_ws/2+20,80,30,"Exit");
     _widgets.push_back(BNewGame);
     _widgets.push_back(BExit);
-    /*genv::gout<<move_to(_wn*_ws/2-40, _wn*_ws/2-20) <<color(200, 200, 200) <<box(80,30);
-    genv::gout<<move_to(_wn*_ws/2-30, _wn*_ws/2) <<color(0,0,0)<<text("New game");
-    genv::gout<<move_to(_wn*_ws/2-40, _wn*_ws/2+20) <<color(160, 160, 160) <<box(80, 30);
-    genv::gout<<move_to(_wn*_ws/2-15, _wn*_ws/2+40) <<color(0,0,0)<<text("Exit");*/
     delete _gm;
 }
