@@ -46,8 +46,6 @@
 		<Unit filename="GameMaster.h" />
 		<Unit filename="OXbox.cpp" />
 		<Unit filename="OXbox.h" />
-		<Unit filename="examplecheckbox.cpp" />
-		<Unit filename="examplecheckbox.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="widgets.cpp" />
 		<Unit filename="widgets.hpp" />
