@@ -21,5 +21,5 @@ public:
     virtual void draw() = 0;
     virtual void handle(genv::event ev) = 0;
 };
-
+//Erdemben atalakitottam ahhoz, hogy a kesobbiekben mas feladatokra is tudjam hasznalni, es a widget felhasznalasa amugy is feladatkiiras volt, ugyhogy koszonom, nem elnek a pontlevonas lehetosegevel... Amugy nagyon otletes volt :D
 #endif // WIDGETS_HPP_INCLUDED
