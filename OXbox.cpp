@@ -19,7 +19,7 @@ OXbox::OXbox(Application* parent, int x, int y, int sx, int sy) :
     Widget(parent, x, y, sx, sy, true)
 {
     _checked=false;
-    _xo=true;
+    _xo=Player1;
 }
 
 void OXbox::draw()

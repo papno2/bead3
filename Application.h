@@ -1,6 +1,9 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#define Player1 1
+#define Player2 0
+
 #include "widgets.hpp"
 #include "OXbox.h"
 #include "GameMaster.h"
@@ -19,7 +22,7 @@ class Application
         void event_loop();
         void registerWidget(Widget*);
         virtual bool check(int, int);
-        void endofGame();
+        void endofGame(int);
 
     protected:
         std::vector<Widget*> _widgets;
@@ -27,6 +30,7 @@ class Application
         bool _TheGameIsOn;
         int _wn, _ws;
         int focus;
+        //int _winner;
     private:
 };
 

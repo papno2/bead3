@@ -4,6 +4,7 @@
 #include "widgets.hpp"
 #include "graphics.hpp"
 #include "Application.h"
+//class Application;
 
 class OXbox : public Widget
 {
