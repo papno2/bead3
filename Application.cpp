@@ -4,6 +4,16 @@
 Application::Application(int n, int s): _wn(n), _ws(s)
 {
     genv::gout.open(_wn*_ws,_wn*_ws);
+    initGame();
+}
+
+void Application::registerWidget(Widget *w)
+{
+    _widgets.push_back(w);
+}
+
+void Application::initGame()
+{
     for (int i=0; i<_wn; i++)
     {
         for (int j=0; j<_wn; j++)
@@ -14,10 +24,7 @@ Application::Application(int n, int s): _wn(n), _ws(s)
     _TheGameIsOn=true;
 
 }
-void Application::registerWidget(Widget *w)
-{
-    _widgets.push_back(w);
-}
+
 void Application::event_loop()
 {
     event ev;
@@ -69,25 +76,28 @@ void Application::event_loop()
         }
     }
 }
-
-bool Application::action(int x, int y)
+///kulon nezni h ki jon, mit lepett->X/O es utana kulon ellenorizni, h nyert-e
+bool Application::check(int x, int y)
 {
     bool whoSteps=(_gm.steps(x/_ws, y/_ws));
     if (_gm.check(whoSteps))
     {
         _TheGameIsOn=false;
-
     }
 
     return whoSteps;
 }
 
+
+
 void Application::endofGame()
 {
+    //genv::gout<<refresh;
     for (int i=0; i<_wn*_wn; i++)
     {
         _widgets[i]->unfocusable();
 
     }
-    genv::gout<<color(255, 50, 50)<<text("Vege");
+    genv::gout<<move_to(_wn*_ws/2-100, _wn*_ws/2-50) << color (0,0,0)<<box(200,100);
+    genv::gout<<move_to(_wn*_ws/2-10, _wn*_ws/2) <<color(255, 50, 50)<<text("Vege");
 }

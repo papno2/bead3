@@ -17,17 +17,17 @@ bool GameMaster::isFree(short x, short y)
     return false;
 }
 
-/*bool GameMaster::steps(short x, short y)
+bool GameMaster::steps(short x, short y)
 {
     if (isFree(x, y))
     {
-        board[x][y]=step%2;
         step++;
+        board[x][y]=step%2;
     }
-    return (step%2==1); //ha sikerult lepni, a masik jatekos jon, ha nem, tovabbra is a jelenlegi
-}*/
+    return step%2; //ha sikerult lepni, a masik jatekos jon, ha nem, tovabbra is a jelenlegi
+}
 
-int GameMaster::steps(short x, short y)
+/*int GameMaster::steps(short x, short y)
 {
     if (isFree(x, y))
     {
@@ -36,7 +36,7 @@ int GameMaster::steps(short x, short y)
         return step%2; // ha sikerult lepni, akkor visszater annak a szamaval, aki lepett
     }
     return -1; //ha nem sikerult lepni -> -1
-}
+}*/
 
 bool GameMaster::check(short who)
 {
@@ -96,14 +96,14 @@ bool GameMaster::check(short who)
         }
 
     }
-    for (short t=4; t<M; t++)
+    for (short t=4; t<M; t++) //jobb felso-bal also
     {
-        for (short h=0; h<t; h++)
+        for (short h=0; h<=t; h++)
         {
             if (board[h][t-h]==who)
             {
                 diagonalcount1++;
-                std::cout<< diagonalcount1<<' ';
+                //std::cout<< diagonalcount1<<' ';
                 if (diagonalcount1>=5)
                     return true;
             } else{
@@ -111,15 +111,14 @@ bool GameMaster::check(short who)
             }
             if (board[M-1-h][M-1-t+h]==who)
             {
-                diagonalcount1++;
-                std::cout<< diagonalcount1<<' ';
-                if (diagonalcount1>=5)
+                diagonalcount2++;
+                //std::cout<< diagonalcount2<<' ';
+                if (diagonalcount2>=5)
                     return true;
             } else{
-                diagonalcount1=0;
+                diagonalcount2=0;
             }
         }
-
     }
 
      return false;

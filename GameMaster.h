@@ -10,7 +10,7 @@ class GameMaster
         GameMaster();
 
         bool isFree(short, short);
-        int steps(short, short);
+        bool steps(short, short);
         bool check(short); //nyert-e valaki
         void drawOnConsol();
 

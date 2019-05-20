@@ -12,7 +12,7 @@ class OXbox : public Widget
         void handle(genv::event);
         void draw();
     protected:
-        bool _xo;
+        bool _xo; //X vagy O lesz kirajzolva (X az 1., O a 2. jatekos)
         bool _checked;
     private:
 };

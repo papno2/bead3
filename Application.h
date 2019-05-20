@@ -15,9 +15,10 @@ class Application
 {
     public:
         Application(int, int);
+        void initGame();
         void event_loop();
         void registerWidget(Widget*);
-        virtual bool action(int, int);
+        virtual bool check(int, int);
         void endofGame();
 
     protected:

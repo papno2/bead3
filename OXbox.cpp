@@ -52,7 +52,7 @@ void OXbox::handle(genv::event ev)
 {
     if (ev.type == ev_mouse && is_selected(ev.pos_x, ev.pos_y) && ev.button==btn_left)
         {
-            _xo=_parent->action(ev.pos_x, ev.pos_y);
+            _xo=_parent->check(ev.pos_x, ev.pos_y);
             _checked = true;
             _focusable=false;
         }
