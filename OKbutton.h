@@ -13,6 +13,7 @@ class OKbutton : public Widget
         void draw();
     protected:
         std::string _text;
+        bool _pushed;
     private:
 };
 

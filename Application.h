@@ -19,6 +19,7 @@ class Application
 {
     public:
         Application(int, int);
+        ~Application();
         void InitGame();
         void event_loop();
         void registerWidget(Widget*);
@@ -28,7 +29,7 @@ class Application
 
     protected:
         std::vector<Widget*> _widgets;
-        //OKbutton* BNewGame, *BExit;
+        //Widget* BNewGame, *BExit;
         GameMaster* _gm;
         bool _TheGameIsOn;
         int _wn, _ws;

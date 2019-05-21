@@ -1,4 +1,5 @@
 #include "Application.h"
+//#include<iostream>
 
 Application::Application(int n, int s): _wn(n), _ws(s)
 {
@@ -13,7 +14,7 @@ void Application::registerWidget(Widget *w)
 
 void Application::InitGame()
 {
-
+    _widgets.clear();
     for (int i=0; i<_wn; i++)
     {
         for (int j=0; j<_wn; j++)
@@ -38,7 +39,7 @@ void Application::event_loop()
 
         if (_TheGameIsOn)
         {
-            if (ev.type == ev_mouse)
+            /*if (ev.type == ev_mouse)
             {
                 for (size_t i=0; i<_widgets.size(); i++)
                 {
@@ -48,7 +49,9 @@ void Application::event_loop()
                         focus = i;
                     }
                 }
-            }
+            }*/
+            /*if (ev.keycode==key_enter)
+                _gm->drawOnConsol();*/
             if (ev.keycode==key_tab)
             {
                 if (focus>-1)
@@ -87,7 +90,19 @@ void Application::event_loop()
 
         } else
         {
-            focus=-1;
+            /*focus=-1;
+            if (ev.type == ev_mouse && ev.button==btn_left)
+            {
+                if (_wn*_ws/2-40<ev.pos_x && ev.pos_x<_wn*_ws/2+40 && _wn*_ws/2-20<ev.pos_y && ev.pos_y<_wn*_ws/2+10)
+                {
+                    InitGame();
+                }
+                if (_wn*_ws/2-40<ev.pos_x && ev.pos_x<_wn*_ws/2+40 && _wn*_ws/2+20<ev.pos_y && ev.pos_y<_wn*_ws/2+50)
+                    return;
+            }*/
+        }
+        {
+
             if (ev.type == ev_mouse)
             {
                 for (size_t i=0; i<_widgets.size(); i++)
@@ -99,17 +114,17 @@ void Application::event_loop()
                     }
                 }
             }
-            if (focus>-1 && _widgets[focus]->isfocusable())
+            if (focus>-1 && focus<_widgets.size() && _widgets[focus]->isfocusable())
             {
                 _widgets[focus]->focus();
                 _widgets[focus]->handle(ev);
             }
-        }
 
             for (Widget * w : _widgets)
             {
                 w->draw();
             }
+        }
         gout << refresh;
 
     }
@@ -124,14 +139,9 @@ bool Application::StepCheck(int x, int y)
 
 void Application::action(std::string id)
 {
-    for (unsigned i=0; i<_widgets.size(); i++)
-    {
-        delete _widgets[i];
-    }
-    _widgets.clear();
     if (id=="Exit")
     {
-        return;
+        delete this;
     }
     if (id=="New game")
     {
@@ -163,5 +173,17 @@ void Application::EndofGame(int winner)
     Widget* BExit= new OKbutton(this,_wn*_ws/2-40, _wn*_ws/2+20,80,30,"Exit");
     _widgets.push_back(BNewGame);
     _widgets.push_back(BExit);
+    /*genv::gout<<move_to(_wn*_ws/2-40, _wn*_ws/2-20) <<color(200, 200, 200) <<box(80,30);
+    genv::gout<<move_to(_wn*_ws/2-30, _wn*_ws/2) <<color(0,0,0)<<text("New game");
+    genv::gout<<move_to(_wn*_ws/2-40, _wn*_ws/2+20) <<color(160, 160, 160) <<box(80, 30);
+    genv::gout<<move_to(_wn*_ws/2-15, _wn*_ws/2+40) <<color(0,0,0)<<text("Exit");*/
     delete _gm;
+}
+
+Application::~Application()
+{
+    for (unsigned i=0; i<_widgets.size(); i++)
+    {
+        delete _widgets[i];
+    }
 }
